@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="google-site-verification" content="kqwGdgpP-_J0AQkeHuzcWOAfP7y_B_yhDIlJwajl_FQ" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ultimate Fun Portal</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <script src="https://quge5.com/88/tag.min.js" data-zone="238533" async data-cfasync="false"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        
+        body { 
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); 
+            color: #f8fafc; 
+            text-align: center; 
+            padding: 15px; 
+            min-height: 100vh; 
+            overflow-x: hidden;
+        }
+        
+        h1 { 
+            color: #38bdf8; 
+            font-size: 2.8rem; 
+            margin-top: 25px; 
+            font-weight: 800; 
+            letter-spacing: -1px;
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+            animation: titleGrow 1s ease-out forwards;
+        }
+        @keyframes titleGrow {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .subtitle { color: #94a3b8; margin-bottom: 30px; font-size: 1.2rem; font-weight: 600; }
+        
+        /* Navigation Tabs */
+        .nav-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 950px; margin: 0 auto 25px auto; }
+        .tab-btn { 
+            background: #1e293b; 
+            color: #94a3b8; 
+            border: 2px solid #334155; 
+            padding: 12px 24px; 
+            border-radius: 50px; 
+            cursor: pointer; 
+            font-weight: 700; 
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            font-size: 14px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+        }
+        .tab-btn:hover { 
+            background: #334155; 
+            color: #fff;
+            transform: scale(1.05) translateY(-2px); 
+            border-color: #38bdf8; 
+        }
+        
+        #tab-wealth.active-tab { background: #10b981; color: #fff; border-color: #10b981; box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
+        #tab-zoom.active-tab { background: #38bdf8; color: #fff; border-color: #38bdf8; box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
+        #tab-sea.active-tab { background: #3b82f6; color: #fff; border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
+        #tab-teller.active-tab { background: #a855f7; color: #fff; border-color: #a855f7; box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); }
+        #tab-stroop.active-tab { background: #f43f5e; color: #fff; border-color: #f43f5e; box-shadow: 0 0 15px rgba(244, 63, 94, 0.4); }
+        #tab-math.active-tab { background: #f59e0b; color: #fff; border-color: #f59e0b; box-shadow: 0 0 15px rgba(245, 158, 11, 0.4); }
+        #tab-ttt.active-tab { background: #06b6d4; color: #fff; border-color: #06b6d4; box-shadow: 0 0 15px rgba(6, 182, 212, 0.4); }
+        #tab-cyber.active-tab { background: #ec4899; color: #fff; border-color: #ec4899; box-shadow: 0 0 15px rgba(236, 72, 153, 0.4); }
+        
+        /* Main Container Cards */
+        .app-section { 
+            display: none; 
+            max-width: 850px; 
+            margin: 20px auto; 
+            background: #1e293b; 
+            padding: 35px 25px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25); 
+            text-align: center;
+            border: 1px solid #334155;
+        }
+        .active-section { display: block; animation: sectionGrow 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        @keyframes sectionGrow { 
+            0% { opacity: 0; transform: scale(0.95); } 
+            100% { opacity: 1; transform: scale(1); } 
+        }
+
+        .game-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #38bdf8, #3b82f6);
+            color: white;
+            padding: 6px 16px;
+            font-size: 12px;
+            font-weight: 800;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        .badge-green { background: linear-gradient(45deg, #10b981, #059669); }
+        .badge-blue { background: linear-gradient(45deg, #3b82f6, #1d4ed8); }
+        .badge-purple { background: linear-gradient(45deg, #a855f7, #7c3aed); }
+        .badge-orange { background: linear-gradient(45deg, #f59e0b, #d97706); }
+        .badge-cyan { background: linear-gradient(45deg, #06b6d4, #0891b2); }
+        .badge-pink { background: linear-gradient(45deg, #ec4899, #be185d); }
+        
+        .page { display: none; }
+        .active-page { display: block; animation: sectionGrow 0.4s ease-out; }
+        
+        input { padding: 14px 20px; width: 80%; max-width: 400px; border-radius: 12px; border: 2px solid #334155; background: #0f172a; color: #fff; text-align: center; font-size: 16px; font-weight: 600; outline: none; transition: 0.3s; margin-bottom: 15px; }
+        input:focus { border-color: #38bdf8; box-shadow: 0 0 15px rgba(56, 189, 248, 0.3); }
+        
+        .btn { background: #334155; color: white; padding: 12px 28px; border: none; border-radius: 12px; font-size: 15px; cursor: pointer; font-weight: 700; transition: all 0.2s ease; display: inline-block; text-decoration: none; margin: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .btn:hover { background: #475569; transform: scale(1.04); }
+        .btn:active { transform: scale(0.95); }
+        
+        .whatsapp-btn { background: #22c55e !important; }
+        .whatsapp-btn:hover { background: #16a34a !important; }
+
+        /* Character Teller Grid Box */
+        .box-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 25px 0; }
+        .mystery-card { background: #0f172a; border: 2px solid #334155; padding: 25px 10px; border-radius: 12px; cursor: pointer; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); font-size: 16px; font-weight: bold; color: #f8fafc; }
+        .mystery-card:hover { border-color: #a855f7; transform: scale(1.05) translateY(-5px); background: #1e293b; }
+        .box-label { font-size: 11px; color: #64748b; margin-top: 5px; text-transform: uppercase; }
+        
+        .spinner { border: 4px solid rgba(56, 189, 248, 0.1); width: 55px; height: 55px; border-radius: 50%; border-left-color: #38bdf8; border-right-color: #38bdf8; animation: spin 0.8s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .result-box { font-size: 16px; background: #0f172a; padding: 20px; border-radius: 12px; border-left: 5px solid #a855f7; margin-bottom: 20px; text-align: left; line-height: 1.6; border-top: 1px solid #334155; border-right: 1px solid #334155; border-bottom: 1px solid #334155; }
+
+        /* AMBANI WEALTH GRID */
+        .wealth-header { background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 25px; font-size: 2.3rem; font-weight: 800; border-radius: 15px; margin-bottom: 25px; position: sticky; top: 0; z-index: 10; box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3); }
+        .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; }
+        
+        .item-card { background: #0f172a; border: 2px solid #334155; border-radius: 15px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
+        .item-card:hover { border-color: #10b981; background: #1e293b; transform: translateY(-2px); }
+        
+        .item-name { font-size: 16px; font-weight: 700; color: #f8fafc; margin-bottom: 4px; }
+        .item-cost { color: #10b981; font-weight: 700; font-size: 15px; margin-bottom: 12px; }
+        .item-controls { display: flex; align-items: center; gap: 10px; width: 100%; justify-content: space-between; margin-top: auto; }
+        
+        .btn-sell { background: #334155; color: #94a3b8; padding: 8px 12px; font-size: 13px; border: 1px solid #475569; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .btn-sell:hover { background: #475569; color: #fff; }
+        .btn-buy { background: #10b981; color: white; padding: 8px 12px; font-size: 13px; border-radius: 6px; border: none; cursor: pointer; font-weight: bold; }
+        .btn-buy:hover { background: #059669; }
+        .item-count { font-weight: 800; font-size: 18px; width: 35px; text-align: center; color: #fff; }
+
+        /* DEEP SEA SIMULATOR */
+        .sea-container { display: flex; flex-direction: column; align-items: center; background: linear-gradient(180deg, #38bdf8, #1e3a8a, #0f172a, #020617); padding: 40px 20px; border-radius: 15px; color: white; min-height: 450px; justify-content: center; box-shadow: inset 0 0 50px rgba(0,0,0,0.5); border: 1px solid #334155; }
+        .depth-display { font-size: 2.4rem; font-weight: 800; text-shadow: 0 3px 6px rgba(0,0,0,0.6); }
+        .sea-slider { -webkit-appearance: none; width: 80%; height: 10px; border-radius: 50px; background: rgba(255,255,255,0.2); outline: none; margin: 30px 0; }
+        .sea-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 26px; height: 26px; border-radius: 50%; background: #38bdf8; cursor: pointer; box-shadow: 0 0 15px rgba(56, 189, 248, 0.7); }
+        
+        .creature-card { max-width: 400px; margin-top: 15px; background: rgba(15, 23, 42, 0.6); padding: 22px; border-radius: 12px; backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); min-height: 120px; display: flex; flex-direction: column; justify-content: center; }
+        .creature-name { font-size: 1.4rem; font-weight: bold; color: #f59e0b; margin-bottom: 6px; }
+
+        /* INTERACTIVE MULTIVERSE JUMP ENGINE */
+        .universe-box { position: relative; width: 100%; max-width: 600px; height: 350px; margin: 20px auto; background: #000; border-radius: 15px; border: 2px solid #334155; overflow: hidden; cursor: pointer; }
+        #universeCanvas { width: 100%; height: 100%; display: block; }
+        .universe-hud { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); background: rgba(15,23,42,0.8); padding: 8px 20px; border-radius: 50px; border: 1px solid #38bdf8; pointer-events: none; font-size: 13px; font-weight: bold; color: #38bdf8; letter-spacing: 1px; }
+
+        /* MINI GAMES PANELS */
+        .game-panel { border: 2px dashed #f43f5e; padding: 20px; border-radius: 15px; background: #0f172a; margin: 20px 0; min-height: 240px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+        .panel-orange { border-color: #f59e0b; }
+        .panel-cyan { border-color: #06b6d4; }
+        .panel-pink { border-color: #ec4899; }
+        .game-stats { display: flex; justify-content: space-between; font-weight: bold; font-size: 16px; margin-bottom: 15px; color: #94a3b8; background: #1e293b; padding: 8px 15px; border-radius: 8px; }
+        
+        .game-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(15, 23, 42, 0.95); display:flex; flex-direction:column; align-items:center; justify-content:center; z-index: 5; }
+        .game-overlay .btn { background: #f43f5e; font-size: 18px; padding: 14px 40px; border-radius: 50px; }
+        
+        #stroop-word { font-size: 46px; font-weight: 900; margin: auto; text-transform: uppercase; letter-spacing: 2px; }
+        .color-btns-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 15px; }
+        .color-game-btn { padding: 15px; border-radius: 10px; border: none; font-weight: 800; font-size: 16px; cursor: pointer; color: white; transition: 0.2s; }
+        .color-game-btn:hover { filter: brightness(1.15); transform: scale(1.02); }
+        
+        #math-question { font-size: 40px; font-weight: 800; margin: auto; color: #f8fafc; }
+
+        /* TIC TAC TOE GRID */
+        .ttt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 240px; margin: auto; }
+        .ttt-cell { width: 75px; height: 75px; background: #1e293b; border: 2px solid #334155; border-radius: 12px; font-size: 2rem; font-weight: 800; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; }
+        .ttt-cell:hover { background: #334155; border-color: #06b6d4; }
+        .ttt-cell.X { color: #38bdf8; }
+        .ttt-cell.O { color: #f43f5e; }
+
+        /* CYBER JUMP CANVAS */
+        #cyberCanvas { background: #090d16; display: block; margin: auto; border-radius: 10px; border: 2px solid #334155; width: 100%; max-width: 500px; height: 220px; }
+
+        .ad-slot { width: 100%; text-align: center; margin: 25px 0; padding: 10px; background: #1e293b; min-height: 90px; border-radius: 12px; border: 1px solid #334155; }
+        .ad-slot p { font-size: 10px; color: #64748b; }
+        footer { margin-top: 40px; color: #64748b; font-size: 14px; padding-bottom: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h1>The Ultimate Fun Zone</h1>
+    <div class="subtitle">Cosmic Simulators, Deep Ocean Challenges, & Crazy Mind Games!</div>
+
+    <div class="nav-tabs">
+        <button id="tab-wealth" class="tab-btn active-tab" onclick="switchSection('wealth')"> Spend Ambani's Wealth</button>
+        <button id="tab-zoom" class="tab-btn" onclick="switchSection('zoom')"> Multiverse Jump</button>
+        <button id="tab-sea" class="tab-btn" onclick="switchSection('sea')"> The Deep Sea</button>
+        <button id="tab-teller" class="tab-btn" onclick="switchSection('teller')"> Character Teller</button>
+        <button id="tab-stroop" class="tab-btn" onclick="switchSection('stroop')"> Color Trap</button>
+        <button id="tab-math" class="tab-btn" onclick="switchSection('math')"> Fast Math</button>
+        <button id="tab-ttt" class="tab-btn" onclick="switchSection('ttt')"> Tic-Tac-Toe AI</button>
+        <button id="tab-cyber" class="tab-btn" onclick="switchSection('cyber')"> Cyber Jump 2026</button>
+    </div>
+
+    <div id="section-wealth" class="app-section active-section">
+        <div class="game-badge badge-green"> Wealth Simulator</div>
+        <div class="wealth-header">$<span id="wealth-counter">116,000,000,000</span></div>
+        <p style="color: #94a3b8; margin-bottom: 20px; font-weight: 600;">Mukesh Ambani ka poora paisa kharch karke dikhao! Kuch bhi khareedo!</p>
+        <div class="items-grid" id="wealth-items-container"></div>
+    </div>
+
+    <div id="section-zoom" class="app-section">
+        <div class="game-badge"> Quantum Engine</div>
+        <h2>Infinite Multiverse Hyperspace Jump</h2>
+        <p style="color: #94a3b8; font-weight: 600; margin-bottom: 15px;">Canvas box ke andar click karke hold karo speed-up karne ke liye aur naye Dimensions explore karo!</p>
+        
+        <div class="universe-box" id="universeBox" onmousedown="engageHyperspace(true)" onmouseup="engageHyperspace(false)" ontouchstart="engageHyperspace(true)" ontouchend="engageHyperspace(false)">
+            <canvas id="universeCanvas"></canvas>
+            <div class="universe-hud" id="universeHud">DIMENSION: EARTH-616 (NORMAL SPEED)</div>
+        </div>
+    </div>
+
+    <div id="section-sea" class="app-section">
+        <div class="game-badge badge-blue"> Discovery Simulator</div>
+        <h2>The Deep Sea Exploration</h2>
+        <p style="color:#94a3b8; font-weight: 600; margin-bottom:15px;">Slider ko niche scroll karke ocean ke tal tak jaao aur ajeeb jeev dekho!</p>
+        <div class="sea-container" id="sea-bg">
+            <div class="depth-display"><span id="sea-depth">0</span> meters</div>
+            <input type="range" min="0" max="4000" value="0" class="sea-slider" id="depthSlider" oninput="exploreOcean(this.value)">
+            <div class="creature-card">
+                <div class="creature-name" id="sea-creature-name">Sea Surface</div>
+                <div id="sea-creature-desc">Yahan light perfect hoti hai. Saari normal machliyan aur insaan yahi swimming karte hain.</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="section-teller" class="app-section">
+        <div class="game-badge badge-purple"> Fun Predictor</div>
+        <div id="page1" class="page active-page">
+            <h2>Apna Asli Naam Likho</h2>
+            <div class="input-group" style="margin-top: 15px;"><input type="text" id="userName" placeholder="Yahan naam daalein..." autocomplete="off"></div>
+            <button class="btn" style="background: #a855f7;" onclick="goToPage2()">Aage Badhein <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div id="page2" class="page">
+            <h2>Hey <span id="display-name" style="color:#a855f7;"></span>, Ek Box Chuno!</h2>
+            <div class="box-grid">
+                <div class="mystery-card" onclick="startScanning('Gold Box')">?? Gold Box<div class="box-label">Box A</div></div>
+                <div class="mystery-card" onclick="startScanning('Diamond Box')">?? Diamond Box<div class="box-label">Box B</div></div>
+                <div class="mystery-card" onclick="startScanning('Ghost Box')">?? Ghost Box<div class="box-label">Box C</div></div>
+            </div>
+        </div>
+        <div id="page-scanning" class="page">
+            <h3>Analyzing System Parameters...</h3>
+            <div class="spinner"></div>
+        </div>
+        <div id="page3" class="page">
+            <div id="result" class="result-box"></div>
+            <button class="btn whatsapp-btn" onclick="shareToWhatsApp()"><i class="fab fa-whatsapp"></i> Share on WhatsApp</button>
+            <button class="btn" style="background:#475569;" onclick="restartGame()">Reset</button>
+        </div>
+    </div>
+
+    <div id="section-stroop" class="app-section">
+        <div class="game-badge badge-purple" style="background:#f43f5e;"> Mini Game</div>
+        <h2>Color Trap (Brain Reflex)</h2>
+        <p style="color: #94a3b8; font-size: 14px; margin-bottom: 10px; font-weight: 600;">Rule: Jo color dikh rha h uspar click kro, kya likha h uspar nahi!</p>
+        <div class="game-panel">
+            <div class="game-stats"><div>? Timer: <span id="stroop-timer">5</span>s</div><div> Score: <span id="stroop-score">0</span></div></div>
+            <div id="stroop-word">TEXT</div>
+            <div class="color-btns-grid">
+                <button class="color-game-btn" style="background:#ef4444;" onclick="checkStroopAnswer('red')">RED</button>
+                <button class="color-game-btn" style="background:#3b82f6;" onclick="checkStroopAnswer('blue')">BLUE</button>
+                <button class="color-game-btn" style="background:#10b981;" onclick="checkStroopAnswer('green')">GREEN</button>
+                <button class="color-game-btn" style="background:#eab308; color:#000;" onclick="checkStroopAnswer('yellow')">YELLOW</button>
+            </div>
+            <div id="stroop-start-screen" class="game-overlay">
+                <button class="btn" onclick="startStroopGame()"> Start Game</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="section-math" class="app-section">
+        <div class="game-badge badge-orange"> Mini Game</div>
+        <h2>Fast Math Lie Detector</h2>
+        <p style="color: #94a3b8; font-size: 14px; margin-bottom: 10px; font-weight: 600;">Kya ye calculation sahi hai? 3 second me jawaab do!</p>
+        <div class="game-panel panel-orange">
+            <div class="game-stats"><div>? Time: <span id="math-timer">3</span>s</div><div>?? Score: <span id="math-score">0</span></div></div>
+            <div id="math-question">2 + 5 = 7</div>
+            <div style="display:flex; gap:15px; justify-content:center; margin-top:15px;">
+                <button class="btn" style="background:#10b981; width:45%; padding: 14px;" onclick="checkMathAnswer(true)"><i class="fas fa-check"></i> TRUE</button>
+                <button class="btn" style="background:#ef4444; width:45%; padding: 14px;" onclick="checkMathAnswer(false)"><i class="fas fa-times"></i> FALSE</button>
+            </div>
+            <div id="math-start-screen" class="game-overlay">
+                <button class="btn" style="background:#f59e0b;" onclick="startMathGame()"> Start Game</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="section-ttt" class="app-section">
+        <div class="game-badge badge-cyan"> Smart AI</div>
+        <h2>Tic-Tac-Toe Smart Engine</h2>
+        <p style="color: #94a3b8; font-size: 14px; margin-bottom: 15px; font-weight: 600;">Kya aap AI Bot ko hara sakte ho? Try karke dekho!</p>
+        <div class="game-panel panel-cyan">
+            <div id="ttt-status" style="font-weight: bold; margin-bottom: 10px; color:#06b6d4;">Aapki Turn (X)</div>
+            <div class="ttt-grid">
+                <div class="ttt-cell" onclick="makeTTTMove(0)"></div>
+                <div class="ttt-cell" onclick="makeTTTMove(1)"></div>
+                <div class="ttt-cell" onclick="makeTTTMove(2)"></div>
+                <div class="ttt-cell" onclick="makeTTTMove(3)"></div>
+                <div class="ttt-cell" onclick="makeTTTMove(4)"></div>
+                <div class="ttt-cell" onclick="makeTTTMove(5)"></div>
+                <div class="ttt-cell" onclick="makeTTTMove(6)"></div>
+                <div class="ttt-cell" onclick="makeTTTMove(7)"></div>
+                <div class="ttt-cell" onclick="makeTTTMove(8)"></div>
+            </div>
+            <button class="btn" style="background: #06b6d4; margin-top:15px;" onclick="resetTTT()">Restart Match</button>
+        </div>
+    </div>
+
+    <div id="section-cyber" class="app-section">
+        <div class="game-badge badge-pink"> High Score Game</div>
+        <h2>Cyber Jump (Infinite Runner)</h2>
+        <p style="color: #94a3b8; font-size: 14px; margin-bottom: 10px; font-weight: 600;">Jump karne ke liye screen par kahi bhi click karo ya Spacebar dabao!</p>
+        <div class="game-panel panel-pink">
+            <div class="game-stats"><div> Score: <span id="cyber-score">0</span></div><div> High Score: <span id="cyber-highscore">0</span></div></div>
+            <canvas id="cyberCanvas" width="480" height="200" onclick="triggerCyberJump()"></canvas>
+            <div style="margin-top:10px;">
+                <button class="btn" style="background:#ec4899; width:60%;" onclick="triggerCyberJump()"> JUMP!</button>
+            </div>
+            <div id="cyber-start-screen" class="game-overlay">
+                <button class="btn" style="background:#ec4899;" onclick="startCyberGame()">Start Running</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="ad-slot"><p>ADVERTISEMENT</p></div>
+
+    <footer><p>&copy; 2026 FunZone | Ultimate Interstellar Games Portal</p></footer>
+
+    <script>
+        function playSound(type) {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator(); const gain = ctx.createGain();
+                osc.connect(gain); gain.connect(ctx.destination);
+                if(type==='click') { osc.frequency.setValueAtTime(400, ctx.currentTime); gain.gain.setValueAtTime(0.03, ctx.currentTime); osc.start(); osc.stop(ctx.currentTime+0.05); }
+                else if(type==='success') { osc.frequency.setValueAtTime(500, ctx.currentTime); osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime+0.1); gain.gain.setValueAtTime(0.03, ctx.currentTime); osc.start(); osc.stop(ctx.currentTime+0.12); }
+            } catch(e){}
+        }
+
+        function switchSection(id) {
+            playSound('click');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active-tab'));
+            document.querySelectorAll('.app-section').forEach(s => s.classList.remove('active-section'));
+            document.getElementById(`tab-${id}`).classList.add('active-tab');
+            document.getElementById(`section-${id}`).classList.add('active-section');
+            resetStroopInstance(); resetMathInstance(); stopCyberGame();
+            if(id === 'zoom') { initUniverseEngine(); } else { stopUniverseEngine(); }
+            if(id === 'cyber') { document.getElementById('cyber-start-screen').style.display = 'flex'; }
+        }
+
+        /* --- AMBANI WEALTH LOGIC --- */
+        let totalWealth = 116000000000;
+        const wealthItems = [
+            { id: 'burger', name: 'Delicious Cheesy Burger', cost: 5, count: 0 },
+            { id: 'book', name: 'Motivational Book', cost: 15, count: 0 },
+            { id: 'netflix', name: 'Netflix 1 Year Premium', cost: 100, count: 0 },
+            { id: 'iphone', name: 'iPhone 15 Pro Max', cost: 1500, count: 0 },
+            { id: 'gamingpc', name: 'Ultimate DDR5 Gaming PC Setup', cost: 4000, count: 0 },
+            { id: 'bullet', name: 'Royal Enfield Bullet 350', cost: 2500, count: 0 },
+            { id: 'scorpio', name: 'Mahindra Scorpio S11 4x4', cost: 22000, count: 0 },
+            { id: 'rolex', name: 'Rolex Daytona Gold Watch', cost: 45000, count: 0 },
+            { id: 'supercar', name: 'Ferrari SF90 Stradale', cost: 500000, count: 0 },
+            { id: 'goldbar', name: '10 KG Pure Gold Bar', cost: 750000, count: 0 },
+            { id: 'mansion', name: 'Ultra Luxury Mumbai Mansion', cost: 15000000, count: 0 },
+            { id: 'jet', name: 'Private Gulfstream G700 Jet', cost: 75000000, count: 0 },
+            { id: 'hotel', name: '5-Star Luxury Resort', cost: 250000000, count: 0 },
+            { id: 'island', name: 'Private Caribbean Island', cost: 500000000, count: 0 },
+            { id: 'ipl', name: 'Mega IPL Cricket Team', cost: 950000000, count: 0 },
+            { id: 'space', name: 'Space SpaceX Tourist Trip', cost: 5500000000, count: 0 },
+            { id: 'burj', name: 'Burj Khalifa Commercial Floor', cost: 12000000000, count: 0 },
+            { id: 'twitter', name: 'Buy X / Twitter Clone Platform', cost: 44000000000, count: 0 }
+        ];
+
+        function renderWealthItems() {
+            const container = document.getElementById('wealth-items-container');
+            container.innerHTML = '';
+            wealthItems.forEach((item, idx) => {
+                container.innerHTML += `
+                    <div class="item-card">
+                        <div class="item-name">${item.name}</div>
+                        <div class="item-cost">$${item.cost.toLocaleString()}</div>
+                        <div class="item-controls">
+                            <button class="btn btn-sell" onclick="sellItem(${idx})">Sell</button>
+                            <span class="item-count" id="count-${item.id}">${item.count}</span>
+                            <button class="btn btn-buy" onclick="buyItem(${idx})">Buy</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        function updateWealthDisplay() { document.getElementById('wealth-counter').innerText = totalWealth.toLocaleString(); }
+        function buyItem(idx) {
+            let item = wealthItems[idx];
+            if (totalWealth >= item.cost) {
+                playSound('click'); totalWealth -= item.cost; item.count++;
+                document.getElementById(`count-${item.id}`).innerText = item.count; updateWealthDisplay();
+            }
+        }
+        function sellItem(idx) {
+            let item = wealthItems[idx];
+            if (item.count > 0) {
+                playSound('click'); totalWealth += item.cost; item.count--;
+                document.getElementById(`count-${item.id}`).innerText = item.count; updateWealthDisplay();
+            }
+        }
+        renderWealthItems();
+
+        /* --- MULTIVERSE JUMP ENGINE --- */
+        const uCanvas = document.getElementById('universeCanvas');
+        const uCtx = uCanvas.getContext('2d');
+        let stars = []; let uAnimId = null; let speedFactor = 1; let isHyperspace = false;
+        const dimensions = ["EARTH-616", "ZOMBIE UNIVERSE", "CHRONO-VOID", "QUANTUM REALM", "CYBERPUNK-3099", "DARK DIMENSION"];
+
+        function initUniverseEngine() {
+            cancelAnimationFrame(uAnimId);
+            uCanvas.width = uCanvas.parentElement.clientWidth;
+            uCanvas.height = 350;
+            stars = [];
+            for(let i=0; i<150; i++) {
+                stars.push({
+                    x: Math.random() * uCanvas.width - uCanvas.width/2,
+                    y: Math.random() * uCanvas.height - uCanvas.height/2,
+                    z: Math.random() * uCanvas.width,
+                    color: `hsl(${Math.random()*360}, 80%, 70%)`
+                });
+            }
+            runUniverseLoop();
+        }
+        function stopUniverseEngine() { cancelAnimationFrame(uAnimId); }
+        function engageHyperspace(bool) {
+            isHyperspace = bool;
+            const hud = document.getElementById('universeHud');
+            if(bool) {
+                playSound('success');
+                let randomDim = dimensions[Math.floor(Math.random() * dimensions.length)];
+                hud.innerText = `WARPING TO: ${randomDim} (HYPER JUMP!)`;
+                hud.style.color = "#f43f5e"; hud.style.borderColor = "#f43f5e";
+            } else {
+                hud.innerText = `DIMENSION: EARTH-616 (NORMAL SPEED)`;
+                hud.style.color = "#38bdf8"; hud.style.borderColor = "#38bdf8";
+            }
+        }
+        function runUniverseLoop() {
+            uCtx.fillStyle = isHyperspace ? 'rgba(10, 15, 30, 0.15)' : '#090d16';
+            uCtx.fillRect(0, 0, uCanvas.width, uCanvas.height);
+            
+            let cx = uCanvas.width / 2;
+            let cy = uCanvas.height / 2;
+            speedFactor = isHyperspace ? 25 : 2;
+
+            stars.forEach(s => {
+                s.z -= speedFactor;
+                if(s.z <= 0) { s.z = uCanvas.width; s.x = Math.random() * uCanvas.width - cx; s.y = Math.random() * uCanvas.height - cy; }
+
+                let px = (s.x / s.z) * cx + cx;
+                let py = (s.y / s.z) * cy + cy;
+                let size = ((uCanvas.width - s.z) / uCanvas.width) * 4;
+
+                if(px >= 0 && px <= uCanvas.width && py >= 0 && py <= uCanvas.height) {
+                    uCtx.fillStyle = s.color;
+                    uCtx.beginPath();
+                    if(isHyperspace) {
+                        let opx = (s.x / (s.z + speedFactor * 2)) * cx + cx;
+                        let opy = (s.y / (s.z + speedFactor * 2)) * cy + cy;
+                        uCtx.strokeStyle = s.color; uCtx.lineWidth = size;
+                        uCtx.moveTo(px, py); uCtx.lineTo(opx, opy); uCtx.stroke();
+                    } else {
+                        uCtx.arc(px, py, size, 0, Math.PI*2); uCtx.fill();
+                    }
+                }
+            });
+            uAnimId = requestAnimationFrame(runUniverseLoop);
+        }
+
+        /* --- THE DEEP SEA LOGIC --- */
+        const seaCreatures = [
+            { depth: 0, name: "Sea Surface Layer", desc: "Yahan light perfect hoti hai. Saari normal machliyan aur insaan yahi swimming karte hain.", color: "#38bdf8" },
+            { depth: 200, name: "Twilight Zone (Dolphin & Orcas)", desc: "Yahan se roshni kam hone lagti hai. Dolphins aur Whale yahan tak travel karti hain.", color: "#1e3a8a" },
+            { depth: 1000, name: "Midnight Zone (Giant Squid)", desc: "Poora andhera layer! Yahan ajeeb aur badi Giant Squids paayi jaati hain.", color: "#1e293b" },
+            { depth: 2000, name: "The Abyss (Angler Fish)", desc: "Is gehraai par rehne wali machliyon ke sir par bulb laga hota hai light ke liye!", color: "#0f172a" },
+            { depth: 3000, name: "The Sunken Titanic Wreck", desc: "Meters 3800 par duniya ka sabse mashhoor jahaaz Titanic dooba hua shanti se leta hai.", color: "#090d16" },
+            { depth: 4000, name: "Ocean Floor Bed", desc: "Extremely heavy high pressure zone! Yahan duniye ke sabse vichitra organisms rehte hain.", color: "#020617" }
+        ];
+        function exploreOcean(val) {
+            document.getElementById('sea-depth').innerText = val;
+            let current = seaCreatures[0];
+            for(let i=0; i<seaCreatures.length; i++) { if(val >= seaCreatures[i].depth) { current = seaCreatures[i]; } }
+            document.getElementById('sea-creature-name').innerText = current.name;
+            document.getElementById('sea-creature-desc').innerText = current.desc;
+            document.getElementById('sea-bg').style.background = current.color;
+        }
+
+        /* --- CHARACTER TELLER ENGINE --- */
+        let globalName = ""; let selectedBoxGlobal = "";
+        const dynamicBehaviors = [
+            "Bohot bade aalsi ho! Subah uthne ke baad reels scroll karne ka world record aapke hi naam hai!",
+            "Aapka dimaag computer se bhi tez chalta hai, par sirf faltu aur backbenchers wale kaamon mein!",
+            "Aap ek dum bindaas character ho. Log aapko serious samajhte hain par aap andar se ek dum comedy king ho.",
+            "Upar se shareef dikhte ho par dimaag mein 24 ghante shararat aur doston ki chugliyan chalti hain!"
+        ];
+        function goToPage2() {
+            const nameInput = document.getElementById('userName').value.trim();
+            if (nameInput === "") { alert("Naam to likho!"); return; }
+            globalName = nameInput; document.getElementById('display-name').innerText = globalName;
+            document.getElementById('page1').classList.remove('active-page'); document.getElementById('page2').classList.add('active-page');
+        }
+        function startScanning(boxName) {
+            selectedBoxGlobal = boxName;
+            document.getElementById('page2').classList.remove('active-page'); document.getElementById('page-scanning').classList.add('active-page');
+            setTimeout(() => {
+                document.getElementById('page-scanning').classList.remove('active-page'); document.getElementById('page3').classList.add('active-page');
+                let idx = Math.abs(globalName.length) % dynamicBehaviors.length;
+                document.getElementById('result').innerHTML = `<b>Naam:</b> ${globalName}<br><b>Box:</b> ${selectedBoxGlobal}<br><br><b>Nature:</b> ${dynamicBehaviors[idx]}`;
+                playSound('success');
+            }, 1500);
+        }
+        function shareToWhatsApp() { window.open(`https://api.whatsapp.com/send?text=Mera%20character%20report%20dekho:%20${window.location.href}`, '_blank'); }
+        function restartGame() { document.getElementById('userName').value=""; document.getElementById('page3').classList.remove('active-page'); document.getElementById('page1').classList.add('active-page'); }
+
+        /* --- COLOR TRAP MIND GAME --- */
+        const stroopColors = ['red', 'blue', 'green', 'yellow'];
+        const stroopHex = { red: '#ef4444', blue: '#3b82f6', green: '#10b981', yellow: '#eab308' };
+        let stroopScore = 0; let stroopTimeLeft = 5; let stroopInterval = null; let currentTargetColor = '';
+        
+        function startStroopGame() { 
+            stroopScore = 0; document.getElementById('stroop-score').innerText = stroopScore; 
+            document.getElementById('stroop-start-screen').style.display = 'none'; 
+            nextStroopQuestion(); 
+        }
+        function resetStroopInstance() { clearInterval(stroopInterval); document.getElementById('stroop-start-screen').style.display = 'flex'; }
+        function nextStroopQuestion() {
+            clearInterval(stroopInterval);
+            stroopTimeLeft = 5;
+            document.getElementById('stroop-timer').innerText = stroopTimeLeft;
+            
+            let textWord = stroopColors[Math.floor(Math.random() * stroopColors.length)];
+            currentTargetColor = stroopColors[Math.floor(Math.random() * stroopColors.length)];
+            
+            const displayEl = document.getElementById('stroop-word');
+            displayEl.innerText = textWord.toUpperCase();
+            displayEl.style.color = stroopHex[currentTargetColor];
+            
+            stroopInterval = setInterval(() => {
+                stroopTimeLeft--;
+                document.getElementById('stroop-timer').innerText = stroopTimeLeft;
+                if(stroopTimeLeft <= 0) { resetStroopInstance(); alert("Time Up! Game Over."); }
+            }, 1000);
+        }
+        function checkStroopAnswer(chosen) {
+            if(chosen === currentTargetColor) { stroopScore++; document.getElementById('stroop-score').innerText = stroopScore; playSound('success'); nextStroopQuestion(); }
+            else { resetStroopInstance(); alert("Oops! Wrong Color Clicked."); }
+        }
+
+        /* --- FAST MATH GAME --- */
+        let mathScore = 0; let mathTimeLeft = 3; let mathInterval = null; let isMathCorrect = true;
+        function startMathGame() { mathScore = 0; document.getElementById('math-score').innerText = mathScore; document.getElementById('math-start-screen').style.display = 'none'; nextMathQuestion(); }
+        function resetMathInstance() { clearInterval(mathInterval); document.getElementById('math-start-screen').style.display = 'flex'; }
+        function nextMathQuestion() {
+            clearInterval(mathInterval); mathTimeLeft = 3; document.getElementById('math-timer').innerText = mathTimeLeft;
+            let a = Math.floor(Math.random() * 12) + 1; let b = Math.floor(Math.random() * 12) + 1;
+            isMathCorrect = Math.random() > 0.5;
+            let displayAnswer = isMathCorrect ? (a + b) : (a + b + (Math.random() > 0.5 ? 2 : -1));
+            document.getElementById('math-question').innerText = `${a} + ${b} = ${displayAnswer}`;
+            mathInterval = setInterval(() => {
+                mathTimeLeft--; document.getElementById('math-timer').innerText = mathTimeLeft;
+                if(mathTimeLeft <= 0) { resetMathInstance(); alert("Slow response! Game Over."); }
+            }, 1000);
+        }
+        function checkMathAnswer(userGuess) {
+            if(userGuess === isMathCorrect) { mathScore++; document.getElementById('math-score').innerText = mathScore; playSound('success'); nextMathQuestion(); }
+            else { resetMathInstance(); alert("Galat Jawaab! Dhyan lagao."); }
+        }
+
+        /* --- TIC TAC TOE AI --- */
+        let tttBoard = ["", "", "", "", "", "", "", "", ""];
+        let tttActive = true;
+        function makeTTTMove(index) {
+            if(tttBoard[index] !== "" || !tttActive) return;
+            tttBoard[index] = "X";
+            renderTTT();
+            if(checkTTTWin("X")) { document.getElementById('ttt-status').innerText = "?? Aap Jeet Gaye!"; tttActive = false; return; }
+            if(!tttBoard.includes("")) { document.getElementById('ttt-status').innerText = "?? Match Tie Ho Gaya!"; tttActive = false; return; }
+            
+            tttActive = false;
+            document.getElementById('ttt-status').innerText = "?? Bot soch raha hai...";
+            setTimeout(tttAIMove, 500);
+        }
+        function tttAIMove() {
+            let emptyCells = [];
+            tttBoard.forEach((c, i) => { if(c === "") emptyCells.push(i); });
+            if(emptyCells.length > 0) {
+                let randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+                tttBoard[randomCell] = "O";
+                renderTTT();
+                if(checkTTTWin("O")) { document.getElementById('ttt-status').innerText = "?? Bot Jeet Gaya! Try Again."; tttActive = false; return; }
+            }
+            if(!tttBoard.includes("") && tttActive) { document.getElementById('ttt-status').innerText = "?? Match Tie!"; tttActive = false; return; }
+            if(tttActive === false && tttBoard.includes("")) { tttActive = true; document.getElementById('ttt-status').innerText = "Aapki Turn (X)"; }
+        }
+        function checkTTTWin(p) {
+            const w = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+            return w.some(comb => comb.every(i => tttBoard[i] === p));
+        }
+        function renderTTT() {
+            let cells = document.querySelectorAll('.ttt-cell');
+            cells.forEach((c, i) => { c.innerText = tttBoard[i]; c.className = `ttt-cell ${tttBoard[i]}`; });
+        }
+        function resetTTT() { tttBoard = ["", "", "", "", "", "", "", "", ""]; tttActive = true; document.getElementById('ttt-status').innerText = "Aapki Turn (X)"; renderTTT(); }
+
+        /* --- CYBER JUMP (INFINITE RUNNER) --- */
+        const cyberCanvas = document.getElementById('cyberCanvas');
+        const cyberCtx = cyberCanvas.getContext('2d');
+        let cyberScore = 0; let cyberHighScore = 0; let cyberActive = false;
+        let cyberLoopId = null;
+        
+        let player = { x: 50, y: 140, radius: 12, velocityY: 0, gravity: 0.6, jumpForce: -11, isGrounded: false };
+        let obstacles = [];
+        let obstacleTimer = 0;
+        let gameSpeed = 4.5;
+
+        function startCyberGame() {
+            cyberScore = 0;
+            gameSpeed = 4.5;
+            obstacles = [];
+            player.y = 140;
+            player.velocityY = 0;
+            cyberActive = true;
+            document.getElementById('cyber-score').innerText = cyberScore;
+            document.getElementById('cyber-start-screen').style.display = 'none';
+            runCyberLoop();
+        }
+
+        function stopCyberGame() {
+            cyberActive = false;
+            cancelAnimationFrame(cyberLoopId);
+        }
+
+        function triggerCyberJump() {
+            if (!cyberActive) return;
+            if (player.isGrounded) {
+                player.velocityY = player.jumpForce;
+                player.isGrounded = false;
+                playSound('click');
+            }
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === " " || e.key === "ArrowUp") {
+                if (document.getElementById('section-cyber').classList.contains('active-section')) {
+                    e.preventDefault();
+                    triggerCyberJump();
+                }
+            }
+        });
+
+        function runCyberLoop() {
+            if (!cyberActive) return;
+            cyberCtx.clearRect(0, 0, cyberCanvas.width, cyberCanvas.height);
+
+            // Floor Line
+            cyberCtx.strokeStyle = "#334155";
+            cyberCtx.lineWidth = 3;
+            cyberCtx.beginPath();
+            cyberCtx.moveTo(0, 160);
+            cyberCtx.lineTo(cyberCanvas.width, 160);
+            cyberCtx.stroke();
+
+            // Player Physics
+            player.velocityY += player.gravity;
+            player.y += player.velocityY;
+
+            if (player.y >= 148) {
+                player.y = 148;
+                player.velocityY = 0;
+                player.isGrounded = true;
+            }
+
+            // Draw Neon Player Ball
+            cyberCtx.fillStyle = "#38bdf8";
+            cyberCtx.shadowColor = "#38bdf8";
+            cyberCtx.shadowBlur = 10;
+            cyberCtx.beginPath();
+            cyberCtx.arc(player.x, player.y, player.radius, 0, Math.PI * 2);
+            cyberCtx.fill();
+            cyberCtx.shadowBlur = 0; // reset shadow
+
+            // Obstacles Logic
+            obstacleTimer++;
+            if (obstacleTimer > Math.max(50, 90 - gameSpeed * 4)) {
+                let blockHeight = Math.floor(Math.random() * 25) + 20;
+                obstacles.push({ x: cyberCanvas.width, y: 160 - blockHeight, w: 15, h: blockHeight });
+                obstacleTimer = 0;
+            }
+
+            for (let i = obstacles.length - 1; i >= 0; i--) {
+                let obs = obstacles[i];
+                obs.x -= gameSpeed;
+
+                // Draw Danger Obstacle (Neon Pink)
+                cyberCtx.fillStyle = "#f43f5e";
+                cyberCtx.shadowColor = "#f43f5e";
+                cyberCtx.shadowBlur = 8;
+                cyberCtx.fillRect(obs.x, obs.y, obs.w, obs.h);
+                cyberCtx.shadowBlur = 0;
+
+                // Score Tracking
+                if (obs.x + obs.w < player.x && !obs.passed) {
+                    cyberScore++;
+                    obs.passed = true;
+                    document.getElementById('cyber-score').innerText = cyberScore;
+                    gameSpeed += 0.15; // Speed increase to make it challenging
+                }
+
+                // Accurate Circle-Rectangle Collision Detection
+                let closeX = Math.max(obs.x, Math.min(player.x, obs.x + obs.w));
+                let closeY = Math.max(obs.y, Math.min(player.y, obs.y + obs.h));
+                let distanceX = player.x - closeX;
+                let distanceY = player.y - closeY;
+                let distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
+
+                if (distanceSquared < (player.radius * player.radius)) {
+                    cyberActive = false;
+                    if (cyberScore > cyberHighScore) {
+                        cyberHighScore = cyberScore;
+                        document.getElementById('cyber-highscore').innerText = cyberHighScore;
+                    }
+                    alert(`?? Boom! Collision Ho Gaya. Final Score: ${cyberScore}`);
+                    document.getElementById('cyber-start-screen').style.display = 'flex';
+                    return;
+                }
+
+                if (obs.x + obs.w < 0) { obstacles.splice(i, 1); }
+            }
+
+            cyberLoopId = requestAnimationFrame(runCyberLoop);
+        }
+    </script>
+</body>
+</html>
